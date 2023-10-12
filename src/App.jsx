@@ -1,18 +1,15 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { translate } from "./translation";
+import { useDispatch } from "react-redux";
 import { setLanguage } from "./redux/action/langAction";
+import useTranslate from "../src/customHook/useTranslate";
 
 const App = () => {
   const dispatch = useDispatch();
-
-  const language = useSelector((state) => state.lang.language);
-  console.log(language);
-
+  const translate = useTranslate();
   return (
     <>
-      <p>{translate("greeting", language)}</p>
-      <button onClick={() => dispatch(setLanguage("AZ"))}>azeri</button>
+      <p>{translate("greeting")}</p>
+      <button onClick={() => dispatch(setLanguage("AZ"))}>Azerbaijani</button>
       <button onClick={() => dispatch(setLanguage("EN"))}>English</button>
     </>
   );
